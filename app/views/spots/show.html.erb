@@ -1,0 +1,45 @@
+<div class="spot-back">
+
+<div class="spot-show-wrapper">
+  <div class="container">
+     <div class="row">
+       <div class="col-md-offset-2 col-md-6 spot-content">
+          <%= image_tag @spot.image.url, class:"user-image-spot" %>
+          <div class="spot-name">
+            <p class="spot-text">
+            <%= @spot.spot_name %>
+            </p>
+          </div>
+          <div class="spot-description">
+           <p class="spot-description-title">詳細</p>
+           <%= @spot.description %>
+          </div>
+          <% if !@spot.favorite_users.include?(current_user) %>
+           <%= link_to favorites_path(spot_id: @spot.id), method: :post do %>
+            <p class="favorite-spot text-center">お気に入りに登録</p>
+           <% end %>
+           
+           <% else %>
+           <%= link_to favorites_path(spot_id: @spot.id), method: :delete do %>
+           <p class="favorite-spot text-center">お気に入り解除</p>
+            <% end %>
+          <% end %>
+          
+           <% if !@spot.clear_users.include?(current_user) %>
+           <%= link_to clears_path(spot_id: @spot.id), method: :post do %>
+            <p class="favorite-spot text-center">達成済みに登録</p>
+           <% end %>
+           
+           <% else %>
+           <%= link_to clears_path(spot_id: @spot.id), method: :delete do %>
+           <p class="favorite-spot text-center">達成済みを解除</p>
+            <% end %>
+          <% end %>
+       </div>
+      </div>
+     </div>
+  </div>
+</div>
+
+
+</div>
